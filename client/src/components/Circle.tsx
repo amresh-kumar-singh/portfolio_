@@ -1,6 +1,6 @@
 // import React from "react";
 import Typography from "@mui/material/Typography";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import intro from "src/info/intro";
 import "src/components/circle.css";
 
@@ -9,16 +9,6 @@ const Circle = () => {
   const [pos, setPos] = useState(261);
   const timerRef = useRef<number | null>(null);
   const ref = useRef<HTMLDivElement>(null);
-  const debounce = (func: () => void) => {
-    let timer: null | number;
-    return (...args: any[]) => {
-      if (timer) clearTimeout(timer);
-      timer = setTimeout(() => {
-        timer = null;
-        func.apply(this, args as any);
-      }, 500);
-    };
-  };
   const Resize = () => {
     if (window.innerHeight < 480) {
       setPos(150);
@@ -40,8 +30,6 @@ const Circle = () => {
       setPos(150);
     }
   };
-  // eslint-disable-next-line
-  const optimaizedFunction = useCallback(debounce(Resize), []);
   const animation = () => {
     setRotate((prev) => {
       if (!ref.current) return prev;
@@ -63,12 +51,19 @@ const Circle = () => {
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
     };
-    // eslint-disable-next-line
   }, []);
   useEffect(() => {
-    window.addEventListener("resize", optimaizedFunction);
-    return () => window.removeEventListener("resize", optimaizedFunction);
-    // eslint-disable-next-line
+    let resizeTimer: ReturnType<typeof setTimeout> | null = null;
+    const onResize = () => {
+      if (resizeTimer) clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(Resize, 500);
+    };
+
+    window.addEventListener("resize", onResize);
+    return () => {
+      window.removeEventListener("resize", onResize);
+      if (resizeTimer) clearTimeout(resizeTimer);
+    };
   }, []);
 
   return (

@@ -34,10 +34,10 @@ const SocialMedia = ({ setAlert }: SocialMediaProps) => {
         </a>
       </li>
       <li>
-        {/* eslint-disable-next-line */}
         <a
           href="#"
-          onClick={() => {
+          onClick={(event) => {
+            event.preventDefault();
             navigator.clipboard.writeText("kumar.akumar.amresh@gmail.com");
             setAlert({
               open: true,

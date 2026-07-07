@@ -14,18 +14,13 @@ import MenuItem from "@mui/material/MenuItem";
 import Link from "@mui/material/Link";
 import CloseIcon from "@mui/icons-material/Close";
 import CircularProgress from "@mui/material/CircularProgress";
-import { AlertTypes } from "src/config/types";
 
 const RESUME_URL =
   "https://raw.githubusercontent.com/akmr-me/resume/main/Amresh_Kumar_Resume.pdf";
 
 const pages = ["About Me", "Skills", "Projects", "Say Hi"];
 
-type NavbarProps = {
-  setAlert: React.Dispatch<React.SetStateAction<AlertTypes>>;
-};
-
-const Navbar = ({ setAlert }: NavbarProps) => {
+const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
   const handleOpenNavMenu = () => {

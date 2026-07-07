@@ -39,7 +39,7 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar setAlert={setAlert} />
+      <Navbar />
       <MyAlert alert={alert} setAlert={setAlert} />
       <Intro />
       <About myClass="next" setAlert={setAlert} />

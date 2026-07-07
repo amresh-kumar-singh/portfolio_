@@ -30,7 +30,7 @@ const MyAlert = ({ alert, setAlert }: MyAlertProps) => {
     setAlert({ open: false });
   };
 
-  const handleCloseAlert = (_event: SyntheticEvent<Element, Event>) => {
+  const handleCloseAlert = () => {
     setAlert({ open: false });
   };
 
