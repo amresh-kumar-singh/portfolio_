@@ -60,7 +60,7 @@ export default function ProjectCard({
             boxShadow:
               "rgb(255 255 255 / 20%) 0px 0px 0px 1px inset, rgb(0 255 255 / 90%) 0px 0px 0px 1px",
           }}
-          image={`${pic}.gif`}
+          image={`/${pic.includes(".") ? pic : `${pic}.gif`}`}
           alt={`${name} album cover`}
         />
       </Box>
@@ -123,7 +123,7 @@ export default function ProjectCard({
             color="secondary"
             size="small"
             href={demo}
-            target={name === "My Portfolio" ? "" : "_blank"}
+            target="_blank"
           >
             Site
           </Button>

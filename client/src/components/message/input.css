@@ -149,36 +149,8 @@ textarea:focus {
 }
 @media (max-width: 800px) {
   #SayHi {
-    flex-direction: column;
-    justify-content: center !important;
-  }
-  .say-hi-card1 > div {
-    width: 90% !important;
-  }
-  .thank-you {
-    justify-content: end;
-    width: inherit;
-    padding-top: 0 !important;
-  }
-  .hire-me {
-    width: 80%;
-    flex-direction: row !important;
-    padding-bottom: 0 !important;
-  }
-  .hire-me span {
-    width: 0;
-  }
-  .hire-me h4,
-  h6 {
-    width: stretch !important;
-  }
-  .say-hi-card1 {
-    width: 100% !important;
-    height: 20% !important;
-    padding-bottom: 30px !important;
-  }
-  .say-hi-card2 {
-    width: 90% !important;
+    width: 92% !important;
+    margin: 0 auto;
   }
 }
 @media only screen and (max-width: 920px) {

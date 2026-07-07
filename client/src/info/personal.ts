@@ -17,6 +17,6 @@ export default [
   },
   {
     key: "Occupation",
-    value: "JavaScript Developer",
+    value: "Full Stack Developer",
   },
 ];

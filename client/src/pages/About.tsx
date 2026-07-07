@@ -70,11 +70,13 @@ const About = ({ myClass, setAlert }: AboutProps) => {
             technologies, including HTML, CSS, JavaScript, NodeJs, React Js,
             MongoDB, etc. A B.E graduate in C.S.E. I'm from Bihar and I
             currently call Bengaluru home. */}
-            I am full stack developer with 2 years of experience, I excel in
-            HTML, CSS, JavaScript, NodeJs, React Js, and MongoDB. Holding a B.E.
-            degree in C.S.E., I quickly progressed to leading a small team
-            within 6 months of joining. Additionally, I have expertise in
-            deploying applications on VPS.
+            I'm a full-stack developer with over 3 years of experience shipping
+            production applications across prop-tech and healthcare. I work across
+            React, Next.js, Node.js, TypeScript, PostgreSQL, and MongoDB —
+            building RESTful APIs, tuning query performance, and delivering
+            real-time features at scale. A B.E. graduate in C.S.E., I've led
+            teams, owned backend systems end-to-end, and deploy reliably with
+            Docker on VPS and AWS.
           </Typography>
         </Box>
 

@@ -3,20 +3,18 @@ export default [
     header: "Front End",
     logo: "logo192.png",
     content:
-      // "I can work on HTML and CSS. Although React is my favorite Framework and I love to work on it.",
-      "I am skilled in React.js with Redux and have a strong proficiency in HTML and CSS. I also know Next.js, which is currently my favorite framework.",
+      "Skilled in React, Next.js, Redux, and TanStack Query for responsive, data-driven interfaces. Strong with HTML, CSS, and TypeScript — experienced in migrating legacy UIs and improving front-end performance across production applications.",
   },
   {
     header: "Backend",
     logo: "nodejs.png",
     content:
-      "I've gained experience working with Node.js and MongoDB. Additionally, I'm skilled in MySQL and Nest.js for robust backend development.",
+      "Experienced in Node.js, Express, and TypeScript with PostgreSQL, Sequelize, and MongoDB. I design RESTful APIs, optimize queries, and have built Python services for data-processing and integration workloads.",
   },
   {
     header: "DevOps",
     logo: "docker.png",
     content:
-      // "JavaScript is my main language of choice when it comes to developing web applications.",
-      "I have experience deploying on VPS and AWS, with knowledge of Linux and Docker. My skills ensure efficient and reliable deployments.",
+      "Experienced deploying on VPS and AWS with Docker, Linux, and Nginx. I ship containerized apps via Docker Compose, configure reverse proxies, and keep production releases efficient and dependable.",
   },
 ];

@@ -18,13 +18,13 @@ export default [
     demo: "https://plugnplay.cc/", // change to actual domain
   },
   {
-    name: "My Portfolio",
-    shortDetail: "",
+    name: "Formly",
+    shortDetail: "Typeform-style form builder",
     details:
-      "My Portfolio is built using ReactJs and MUI5. Messaging is done using mailjet API which sends the message back to my email id. To secure my mailjet secret keys from client-side  NodeJs Server as a relay is being used.There is also a restriction on the number of messages that can be sent from one IP Address.",
-    pic: "portfolio",
-    repo: "https://github.com/akmr-me/portfolio",
-    demo: "#intro",
+      "A block-based form builder with draft/publish snapshots and a one-question-per-page submission experience. Includes a visual builder with live preview, JWT auth, owner dashboard with CSV export, and production deployment via Docker Compose and Nginx. Built with Next.js 15, React 19, Express 5, PostgreSQL, Prisma, and Kysely.",
+    pic: "formly.png",
+    repo: "https://github.com/akmr-me/Formly",
+    demo: "https://formly.akmr.me",
   },
   {
     name: "29 Playing Card Game",

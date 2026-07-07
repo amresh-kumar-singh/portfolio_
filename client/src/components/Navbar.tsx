@@ -13,9 +13,12 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import Link from "@mui/material/Link";
 import CloseIcon from "@mui/icons-material/Close";
-import axiosInstance from "src/config/axiosInstance";
 import CircularProgress from "@mui/material/CircularProgress";
 import { AlertTypes } from "src/config/types";
+
+const RESUME_URL =
+  "https://raw.githubusercontent.com/akmr-me/resume/main/Amresh_Kumar_Resume.pdf";
+
 const pages = ["About Me", "Skills", "Projects", "Say Hi"];
 
 type NavbarProps = {
@@ -38,18 +41,19 @@ const Navbar = ({ setAlert }: NavbarProps) => {
     }
     try {
       setLoading(true);
-      const res = await axiosInstance.get("/resume", { responseType: "blob" });
-      const url = window.URL.createObjectURL(new Blob([res.data]));
+      const res = await fetch(RESUME_URL);
+      if (!res.ok) {
+        throw new Error("Could not download resume");
+      }
+      const blob = await res.blob();
+      const url = window.URL.createObjectURL(blob);
       const link = window.document.createElement("a");
       link.href = url;
-      link.setAttribute("download", "Amresh_CV.pdf");
+      link.setAttribute("download", "Amresh_Kumar_Resume.pdf");
       link.click();
-    } catch (err: any) {
-      setAlert({
-        open: true,
-        type: "error",
-        message: err?.response?.statusText || err.message,
-      });
+      window.URL.revokeObjectURL(url);
+    } catch {
+      window.open(RESUME_URL, "_blank", "noopener,noreferrer");
     } finally {
       setLoading(false);
     }
