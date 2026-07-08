@@ -21,30 +21,41 @@ function App() {
     type: "info",
   } as AlertTypes);
 
+  const appRef = React.useRef<HTMLDivElement>(null);
+
   function moveToTop() {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    // On desktop (>=900px) `.App` is the scroll container; elsewhere the window scrolls.
+    const scroller =
+      appRef.current && appRef.current.scrollHeight > appRef.current.clientHeight
+        ? appRef.current
+        : window;
+    scroller.scrollTo({ top: 0, behavior: "smooth" });
   }
   React.useEffect(() => {
+    const getScrollTop = () =>
+      appRef.current && appRef.current.scrollTop > 0
+        ? appRef.current.scrollTop
+        : document.documentElement.scrollTop;
     const visible = () => {
-      const scroll = document.documentElement.scrollTop;
-      if (scroll > window.screen.availHeight) {
-        setVisibility(true);
-      } else {
-        setVisibility(false);
-      }
+      setVisibility(getScrollTop() > window.innerHeight);
     };
     window.addEventListener("scroll", visible);
-    return () => window.removeEventListener("scroll", visible);
+    appRef.current?.addEventListener("scroll", visible);
+    const node = appRef.current;
+    return () => {
+      window.removeEventListener("scroll", visible);
+      node?.removeEventListener("scroll", visible);
+    };
   }, []);
 
   return (
-    <div className="App">
+    <div className="App" ref={appRef}>
       <Navbar />
       <MyAlert alert={alert} setAlert={setAlert} />
       <Intro />
       <About myClass="next" setAlert={setAlert} />
       <Skills myClass="box" />
-      <Projects myClass="next" projectSlice={projects.slice(0, 2)} />
+      <Projects myClass="next" id="Projects" projectSlice={projects.slice(0, 2)} />
       <Projects myClass="box" projectSlice={projects.slice(2, 4)} />
       <Message myClass="next" setAlert={setAlert} />
       {visibility && (

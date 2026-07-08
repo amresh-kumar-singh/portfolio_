@@ -4,14 +4,21 @@ import Box from "@mui/material/Box";
 import MyContainer from "src/components/MainContainer";
 import { AlertTypes } from "src/config/types";
 
+const FORMLY_ORIGIN = "https://formly.akmr.me";
+const FORM_ID = "ar4pyopc";
+
 type MessageProps = {
   setAlert: React.Dispatch<React.SetStateAction<AlertTypes>>;
   myClass: "box" | "next";
 };
 
 const Message = ({ myClass, setAlert }: MessageProps) => {
+  // Formly posts { type: "formly:submitted" } to the parent on a successful
+  // submit; surface it as a success toast. (Formly handles its own sizing:
+  // the embedded form fills whatever height we give the iframe.)
   useEffect(() => {
-    const handleFormlySubmit = (event: MessageEvent) => {
+    const handleFormlyMessage = (event: MessageEvent) => {
+      if (event.origin !== FORMLY_ORIGIN) return;
       if (event.data?.type === "formly:submitted") {
         setAlert({
           open: true,
@@ -21,8 +28,8 @@ const Message = ({ myClass, setAlert }: MessageProps) => {
       }
     };
 
-    window.addEventListener("message", handleFormlySubmit);
-    return () => window.removeEventListener("message", handleFormlySubmit);
+    window.addEventListener("message", handleFormlyMessage);
+    return () => window.removeEventListener("message", handleFormlyMessage);
   }, [setAlert]);
 
   return (
@@ -43,11 +50,12 @@ const Message = ({ myClass, setAlert }: MessageProps) => {
         id="SayHi"
         sx={{
           display: "flex",
-          flexDirection: "column",
-          alignItems: "stretch",
           width: "100%",
-          height: { xs: "85vh", sm: "600px" },
-          maxHeight: { sm: "75vh" },
+          // Fixed 600px matches Formly's min-h-[600px], so the iframe is never
+          // taller than the form and there's no white gap. maxHeight guards
+          // very short viewports (form scrolls internally instead of gapping).
+          height: "600px",
+          maxHeight: "90vh",
           padding: 0,
           overflow: "hidden",
           background: "transparent",
@@ -55,14 +63,12 @@ const Message = ({ myClass, setAlert }: MessageProps) => {
       >
         <Box
           component="iframe"
-          src="https://formly.akmr.me/embed/ar4pyopc"
+          src={`${FORMLY_ORIGIN}/embed/${FORM_ID}`}
           title="Formly form"
           loading="lazy"
           sx={{
-            flex: 1,
             width: "100%",
             height: "100%",
-            minHeight: 0,
             border: 0,
             display: "block",
           }}

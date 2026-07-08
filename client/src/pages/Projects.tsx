@@ -7,9 +7,10 @@ import { ProjectTypes } from "src/config/types";
 type ProjectsProps = {
   projectSlice: ProjectTypes[];
   myClass: "box" | "next";
+  id?: string;
 };
 
-const Projects = ({ projectSlice, myClass }: ProjectsProps) => {
+const Projects = ({ projectSlice, myClass, id }: ProjectsProps) => {
   return (
     <Box
       className={myClass}
@@ -23,7 +24,7 @@ const Projects = ({ projectSlice, myClass }: ProjectsProps) => {
       <MainContainer
         maxWidth="md"
         // className="project-page"
-        id="Projects"
+        id={id}
         sx={{
           zIndex: "2",
           flexDirection: "column",
